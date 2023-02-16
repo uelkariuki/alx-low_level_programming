@@ -3,8 +3,9 @@
 /**
   *main - Entry point
   *
-  *Return: 0
+  *code by me0
   *
+  *Return: 0
   */
 
 int main(void)

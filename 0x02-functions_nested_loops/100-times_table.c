@@ -15,7 +15,6 @@ void print_times_table(int n)
 	{
 		return;
 	}
-
 	for (i = 0; i < n; i++)
 	{
 		for (j = 0; j < n; j++)
@@ -35,7 +34,7 @@ void print_times_table(int n)
 				{
 					_putchar(result / 100 + '0');
 					_putchar(result / 10 % 10 + '0');
-					_putchar(result % 10);
+					_putchar(result % 10 + '0');
 				}
 				else
 				{
@@ -48,5 +47,6 @@ void print_times_table(int n)
 					_putchar(' ');
 				}
 		}
+		_putchar('\n');
 	}
 }

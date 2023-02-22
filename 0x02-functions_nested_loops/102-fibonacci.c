@@ -10,15 +10,15 @@ int main(void)
 	/* number of fibonacci numbers to print */
 	int n = 50;
 
-	int i, a = 1, b = 2, c;
+	long int i, a = 1, b = 2, c;
 
 	/*print the first two numbers*/
-	printf("%d, %d", a, b);
+	printf("%ld, %ld", a, b);
 	for (i = 3; i <= n; i++)
 	{
 		c = a + b;
 		/*prints the next number*/
-		printf(", %d", c);
+		printf(", %ld", c);
 		a = b;
 		b = c;
 	}

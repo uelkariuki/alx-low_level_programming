@@ -14,12 +14,12 @@ int main(void)
 	unsigned long int next;
 	unsigned long int  i;
 
-	printf("%lud, %lud", first, second);
+	printf("%lu, %lu", first, second);
 
 	for (i = 1 ; i < 98; i++)
 	{
 		next = first + second;
-		printf(", %lud", next);
+		printf(", %lu", next);
 
 		first = second;
 		second = next;

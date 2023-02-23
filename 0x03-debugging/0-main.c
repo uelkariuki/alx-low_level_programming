@@ -7,10 +7,10 @@
 
 int main(void)
 {
-        int i;
+	int i;
 
-        i = 98;
-        printf("%d\n", i);
+	i = 98;
+	printf("%d\n", i);
 
-        return (0);
+	return (0);
 }

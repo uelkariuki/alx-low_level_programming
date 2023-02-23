@@ -9,17 +9,17 @@
 
 int main(void)
 {
-	long int first = 1;
-	long int second = 2;
-	long int next;
-	long int  i;
+	unsigned long int first = 1;
+	unsigned long int second = 2;
+	unsigned long int next;
+	unsigned long int  i;
 
-	printf("%ld, %ld", first, second);
+	printf("%lud, %lud", first, second);
 
-	for (i = 0 ; i < 98; i++)
+	for (i = 1 ; i < 98; i++)
 	{
 		next = first + second;
-		printf(", %ld", next);
+		printf(", %lud", next);
 
 		first = second;
 		second = next;

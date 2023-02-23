@@ -10,7 +10,7 @@ int main(void)
 	int i;
 
 	i = 98;
-	printf("%d\n", i);
+	printf("%d is positive\n", i);
 
 	return (0);
 }

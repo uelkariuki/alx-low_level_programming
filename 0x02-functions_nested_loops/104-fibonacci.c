@@ -16,7 +16,7 @@ int main(void)
 
 	printf("%ld, %ld", first, second);
 
-	for (i = 3; i <= 98; i++)
+	for (i = 0 ; i <= 98; i++)
 	{
 		next = first + second;
 		printf(", %ld", next);

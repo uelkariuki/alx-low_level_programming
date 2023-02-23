@@ -9,17 +9,17 @@
 
 int main(void)
 {
-	int first = 1;
-	int second = 2;
-	int next;
-	int  i;
+	long int first = 1;
+	long int second = 2;
+	long int next;
+	long int  i;
 
-	printf("%d, %d", first, second);
+	printf("%ld, %ld", first, second);
 
 	for (i = 3; i <= 98; i++)
 	{
 		next = first + second;
-		printf(", %d", next);
+		printf(", %ld", next);
 
 		first = second;
 		second = next;

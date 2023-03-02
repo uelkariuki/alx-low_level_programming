@@ -8,32 +8,21 @@
 
 void print_number(int n)
 {
-	int reversed = 0;
-	int digit_count = 0;
+	unsigned int a;
 
 	if (n < 0)
 	{
 		_putchar('-');
-		n = -n;
+		n *= -1;
 	}
-	/*reverse the digits of the number*/
-	while (n > 0)
-	{
-		reversed = reversed * 10 + (n % 10);
-		n /= 10;
-		digit_count++;
-	}
-	if (reversed == 0)
-	{
-		_putchar('0');
 
-	}
-	/*print each digit of the reversed number*/
-	while (reversed > 0)
-	{
-		_putchar((reversed % 10) + '0');
-		reversed /= 10;
+	a = n;
 
-	}
+	if (a / 10)
+		print_number(a / 10);
+
+
+	_putchar(a % 10 + '0');
+
 
 }

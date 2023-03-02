@@ -54,11 +54,11 @@ char *infinite_add(char *n1, char *n2, char *r, int size_r)
 		{
 			return (0);  /* Result cannot be stored in r*/
 		}
+
 		idx1--;
 		idx2--;
 	}
-
-    /* Handle any remaining carry*/
+	/* Handle any remaining carry*/
 
 	if (carry > 0 && idxr < size_r - 1)
 	{
@@ -70,10 +70,10 @@ char *infinite_add(char *n1, char *n2, char *r, int size_r)
 		return (0); /* Result cannot be stored in r*/
 	}
 
-    /* Add a null terminator to the result string*/
+	/* Add a null terminator to the result string*/
 	r[idxr] = '\0';
 
-    /* Reverse the result string*/
+	/* Reverse the result string*/
 	i = 0;
 	j = idxr - 1;
 	while (i < j)
@@ -85,5 +85,6 @@ char *infinite_add(char *n1, char *n2, char *r, int size_r)
 		j--;
 	}
 	/*Return a pointer to the result string*/
+
 	return (r);
 }

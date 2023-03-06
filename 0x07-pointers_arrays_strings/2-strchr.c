@@ -13,7 +13,10 @@ char *_strchr(char *s, char c)
 	while (*s != '\0')
 	{
 		if (*s == c)
+		{
 			return (s);
+		}
+		s++;
 
 	}
 	/*checking for the terminating null character so that it isn't */
@@ -24,6 +27,6 @@ char *_strchr(char *s, char c)
 		return (s);
 
 	}
-	return ((char *)NULL);
+	return (NULL);
 
 }

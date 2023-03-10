@@ -60,7 +60,6 @@ int main(int argc, char *argv[])
 	cents = cents - (coins * 2);
 
 	coins = coins + calculate_coins(1, cents);
-	cents = cents - (coins * 1);
 
 	printf("%d\n", coins);
 	return (0);

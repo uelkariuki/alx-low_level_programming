@@ -18,7 +18,7 @@ int main(int argc, char *argv[])
 
 	for (i = 1; i < argc; i++)
 	{
-		if (isalpha(argv[i][0]))
+		if (!isdigit(argv[i][0]))
 		{
 			printf("Error\n");
 			return (1);
@@ -31,18 +31,11 @@ int main(int argc, char *argv[])
 		{
 			sum = sum + num;
 		}
-		else
-		{
-			return (0);
-
-		}
-
 
 	}
 
 	printf("%d\n", sum);
 	return (0);
-
 
 }
 

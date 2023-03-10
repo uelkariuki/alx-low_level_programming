@@ -12,7 +12,8 @@
 
 int main(int argc, char *argv[])
 {
-	int i, num, sum = 0;
+	int i, sum = 0;
+	const char *arg, *p;
 
 	if (argc == 1)
 	{
@@ -26,19 +27,19 @@ int main(int argc, char *argv[])
 
 	for (i = 1; i < argc; i++)
 	{
-		if (!isdigit(argv[i][0]))
+
+		arg = argv[i];
+
+		for (p = arg; *p; p++)
 		{
-			printf("Error\n");
-			return (1);
+			if (!isdigit(*p))
+			{
+				printf("Error\n");
+				return (1);
+			}
 		}
 
-
-		num = atoi(argv[i]);
-
-		if (num > 0)
-		{
-			sum = sum + num;
-		}
+		sum = sum + atoi(arg);
 
 	}
 

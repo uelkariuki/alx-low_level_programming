@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 
 /**
   *calculate_coins- calculate the number of coins
@@ -40,6 +41,11 @@ int main(int argc, char *argv[])
 	}
 
 	cents = atoi(argv[1]);
+
+	if (cents == 0 && strcmp(argv[1], "0") != 0)
+	{
+		return (1);
+	}
 
 	if (cents <=  0)
 	{

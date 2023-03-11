@@ -1,27 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include <string.h>
 
-/**
-  *calculate_coins- calculate the number of coins
-  *@coin_value: value of coins ie coin value of 7 - 25 cents is 175
-  *@cents: number of cents to be converted to coins
-  *Return: the number of coins
-  */
-
-int calculate_coins(int coin_value, int cents)
-{
-	int num_coins = 0;
-
-	while (cents >= coin_value)
-	{
-		num_coins++;
-		cents = cents - coin_value;
-
-	}
-	return (num_coins);
-
-}
 /**
   *main- program that prints the minimum number of
   *      coins to make change for an amount of money.
@@ -32,7 +11,9 @@ int calculate_coins(int coin_value, int cents)
 
 int main(int argc, char *argv[])
 {
-	int coins = 0, cents;
+	int num, a, result = 0;
+
+	int coins[] = {25, 10, 5, 2, 1};
 
 	if (argc != 2)
 	{
@@ -40,35 +21,26 @@ int main(int argc, char *argv[])
 		return (1);
 	}
 
-	cents = atoi(argv[1]);
+	num = atoi(argv[1]);
 
-	if (cents == 0 && strcmp(argv[1], "0") != 0)
-	{
-		return (1);
-	}
-
-	if (cents <=  0)
+	if (num < 0)
 	{
 		printf("0\n");
 		return (0);
 	}
+	for (a = 0; a < 5 && num >= 0; a++)
+	{
+		while (num >= coins[a])
+		{
+			result++;
+			num = num - coins[a];
 
-	coins = coins + calculate_coins(25, cents);
-	cents = cents - (coins * 25);
+		}
 
-	coins = coins + calculate_coins(10, cents);
-	cents = cents - (coins * 10);
+	}
 
-	coins = coins + calculate_coins(5, cents);
-	cents = cents - (coins * 5);
 
-	coins = coins + calculate_coins(2, cents);
-	cents = cents - (coins * 2);
-
-	coins = coins + calculate_coins(1, cents);
-	cents = cents - (coins * 1);
-
-	printf("%d\n", coins);
+	printf("%d\n", result);
 	return (0);
 
 }

@@ -3,7 +3,7 @@
 #include "0-strcat.c"
 #include "2-strlen.c"
 #include "9-strcpy.c"
-#include "_putchar.c"
+#include "3-puts.c"
 
 
 /**
@@ -20,7 +20,7 @@ char *str_concat(char *s1, char *s2)
 
 	if (s1 == NULL || s2 == NULL)
 	{
-		_putchar(' ');
+		_puts(" ");
 
 	}
 

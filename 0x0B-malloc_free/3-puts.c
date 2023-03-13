@@ -1,5 +1,4 @@
 #include "main.h"
-#include "_putchar.c"
 
 /**
   *_puts- function that prints a string, followed

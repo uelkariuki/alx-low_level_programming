@@ -13,6 +13,7 @@ char *str_concat(char *s1, char *s2);
 char *_strcat(char *dest, char *src);
 void _puts(char *str);
 int _putchar(char c);
+char *_memcpy(char *dest, char *src, unsigned int n);
 
 
 

@@ -3,6 +3,7 @@
 #include "0-strcat.c"
 #include "2-strlen.c"
 #include "9-strcpy.c"
+#include "_putchar.c"
 
 
 /**
@@ -17,14 +18,13 @@ char *str_concat(char *s1, char *s2)
 {
 	char *p;
 
-	if (NULL)
+	if (s1 == NULL || s2 == NULL)
 	{
 		_putchar(' ');
 
 	}
 
 	p = (char *) malloc(_strlen(s1) + 1);
-	_strcpy(p, s1);
 
 	if (p == NULL)
 	{

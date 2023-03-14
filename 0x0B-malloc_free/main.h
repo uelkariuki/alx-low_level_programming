@@ -14,6 +14,7 @@ char *_strcat(char *dest, char *src);
 void _puts(char *str);
 int _putchar(char c);
 char *_memcpy(char *dest, char *src, unsigned int n);
+int **alloc_grid(int width, int height);
 
 
 

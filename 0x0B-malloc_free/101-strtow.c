@@ -19,7 +19,9 @@ char **strtow(char *str)
 	int j, k, num_words = 0, in_word = 0, i;
 
 	if (str == NULL || _strcmp(str, "") == 0)
+	{
 		return (NULL);
+	}
 	words = malloc(sizeof(char *) *  _strlen(str) / 2 + 1);
 	if (words == NULL)
 	{

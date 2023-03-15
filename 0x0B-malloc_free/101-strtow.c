@@ -1,10 +1,10 @@
 #include "main.h"
+#include <string.h>
 
-#include "2-strlen.c"
-#include "2-strncpy.c"
 #include "3-strcmp.c"
+#include "2-strncpy.c"
+#include "2-strlen.c"
 
-#define MAX_WORD_LEN 100
 
 /**
   *strtow- function that splits a string into words.
@@ -15,45 +15,57 @@
 
 char **strtow(char *str)
 {
-	char **words, *word_start, *word;
-	int num_words = 0, word_len = 0;
+	char **words, *word;
+	int j, k, num_words = 0, in_word = 0, i;
 
 	if (str == NULL || _strcmp(str, "") == 0)
-	{
 		return (NULL);
-	}
 	words = malloc(sizeof(char *) *  _strlen(str) / 2 + 1);
 	if (words == NULL)
 	{
 		return (NULL);
 	}
-	while (*str != '\0')/*count the number of words in the string*/
+	for (i = 0, j = 0; str[i] != '\0'; i++)
 	{
-		while (*str == ' ') /*skip over leading spaces*/
+		if (str[i] != ' ')
 		{
-			str++;
+			if (!in_word)
+			{
+				in_word = 1;
+				j = i;
+			}
 		}
-		if (*str == '\0')/* if we hit end of string,break out of loop*/
-			break;
-		word_start = str; /* count the length of the current word*/
-		while (*str != '\0' && *str != ' ')
+		else if (in_word)
 		{
-			str++;
-			word_len++;
+			in_word = 0;
+			word = malloc(sizeof(char) * (i - j + 1));
+			if (word == NULL)
+			{
+				for (k = 0; k < num_words; k++)
+					free(words[k]);
+				free(words);
+				return (NULL);
+			}
+			strncpy(word, str + j, i - j);
+			word[i - j] = '\0';
+			words[num_words++] = word;
 		}
-		/*allocate memory for the current word*/
-		word = malloc(sizeof(char *) * (word_len + 1));
+	}
+	if (in_word)
+	{
+		word = malloc(sizeof(char) * (i - j + 1));
 		if (word == NULL)
 		{
+			for (k = 0; k < num_words; k++)
+				free(words[k]);
 			free(words);
 			return (NULL);
 		}
-		/*copy current word into the new string*/
-		_strncpy(word, word_start, word_len);
-		word[word_len] = '\0';
-		words[num_words++] = word; /* add the new string to the array*/
+		strncpy(word, str + j, i - j);
+		word[i - j] = '\0';
+		words[num_words++] = word;
 	}
-	words[num_words] = NULL;/* setting the last element to NULL*/
+	words[num_words] = NULL;
 	return (words);
 }
 

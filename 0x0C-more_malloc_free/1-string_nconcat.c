@@ -24,15 +24,15 @@ char *string_nconcat(char *s1, char *s2, unsigned int n)
 	{
 		s2 = "";
 	}
-	if (s1 == NULL && s2 == NULL)
-	{
-		s1 = "";
-		s2 = "";
-	}
 
 	if (n >= s2_len) /* Truncate s2 if necessary */
 	{
 		n = s2_len;
+	}
+	else
+	{
+		s2_len = n;
+
 	}
 	if (n == 0)
 	{

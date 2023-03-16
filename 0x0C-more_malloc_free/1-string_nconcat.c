@@ -31,9 +31,9 @@ char *string_nconcat(char *s1, char *s2, unsigned int n)
 		return (NULL);
 	}
 
-	if (n >= strlen(s2))
+	if (n >= s2_len)
 	{
-		s2++;
+		n = s2_len;
 	}
 
 	memcpy(str, s1, n);

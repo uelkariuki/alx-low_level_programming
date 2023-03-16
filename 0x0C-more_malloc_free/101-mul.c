@@ -1,6 +1,7 @@
 #include "main.h"
 #include <stdio.h>
 #include <stdlib.h>
+#include <ctype.h>
 
 /**
   *main- a program that multiplies two numbers.
@@ -11,7 +12,8 @@
 
 int main(int argc, char *argv[])
 {
-	int result, num1, num2;
+	int result, num1, num2, i, j;
+	char *arg;
 
 	if (argc != 3)
 	{
@@ -20,19 +22,24 @@ int main(int argc, char *argv[])
 
 	}
 
+	for (i = 1; i < argc; i++)
+	{
+		arg = argv[i];
+		for (j = 0; arg[j]; j++)
+		{
+			if (!isdigit(arg[j]))
+			{
+				printf("Error\n");
+				exit(98);
+			}
+		}
+	}
+
 	num1 = atoi(argv[1]);
 	num2 = atoi(argv[2]);
-
-	if (num1 <= 0 || num2 <= 0)
-	{
-		printf("Error\n");
-		exit(98);
-	}
 
 	result =  num1 * num2;
 	printf("%d\n", result);
 
 	return (0);
-
-
 }

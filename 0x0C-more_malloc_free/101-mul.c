@@ -12,7 +12,8 @@
 
 int main(int argc, char *argv[])
 {
-	int result, num1, num2, i, j;
+	float result, num1, num2;
+	int i, j;
 	char *arg;
 
 	if (argc != 3)
@@ -39,7 +40,7 @@ int main(int argc, char *argv[])
 	num2 = atoi(argv[2]);
 
 	result =  num1 * num2;
-	printf("%d\n", result);
+	printf("%f\n", result);
 
 	return (0);
 }

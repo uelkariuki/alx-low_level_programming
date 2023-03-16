@@ -13,7 +13,8 @@
 void *_realloc(void *ptr, unsigned int old_size, unsigned int new_size)
 {
 	void *new_ptr;
-	int num_of_bytes_to_copy;
+	unsigned int i;
+
 
 	if (new_size == 0 && ptr != NULL)
 	{
@@ -36,16 +37,11 @@ void *_realloc(void *ptr, unsigned int old_size, unsigned int new_size)
 	{
 		return (ptr);
 	}
-	if (new_size > old_size)
-	{
-		num_of_bytes_to_copy = old_size;
-	}
-	else if (new_size < old_size)
-	{
-		num_of_bytes_to_copy = new_size;
-	}
 
-	memcpy(new_ptr, ptr, num_of_bytes_to_copy);
+	for (i = 0; i < old_size && i < new_size; i++)
+	{
+		((char *)new_ptr)[i] = ((char *)ptr)[i];
+	}
 	free(ptr);
 	return (new_ptr);
 }

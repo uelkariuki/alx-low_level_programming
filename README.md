@@ -14,3 +14,4 @@
 10. 0x09. C - Static libraries
 11. 0x0A. C - argc, argv
 12. 0x0B. C - malloc, free
+13. 0x0C. C - More malloc, free

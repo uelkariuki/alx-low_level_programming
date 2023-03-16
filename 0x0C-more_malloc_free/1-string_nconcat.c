@@ -20,9 +20,9 @@ char *string_nconcat(char *s1, char *s2, unsigned int n)
 	s2_len = strlen(s2);
 
 	if (s1 == NULL)
-		return ("");
+		s1 = ("");
 	if (s2 == NULL)
-		return ("");
+		s2 = ("");
 
 	if (n >= s2_len)
 	{

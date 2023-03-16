@@ -11,7 +11,7 @@
 
 int main(int argc, char *argv[])
 {
-	unsigned long int result, num1, num2;
+	int result, num1, num2;
 
 	if (argc != 3)
 	{
@@ -30,7 +30,7 @@ int main(int argc, char *argv[])
 	}
 
 	result =  num1 * num2;
-	printf("%ld\n", result);
+	printf("%d\n", result);
 
 	return (0);
 

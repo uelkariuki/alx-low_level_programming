@@ -8,6 +8,7 @@
   *@owner: the owners
   */
 
+typedef struct dog dog_t;
 
 struct dog
 {

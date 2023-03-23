@@ -15,3 +15,6 @@
 11. 0x0A. C - argc, argv
 12. 0x0B. C - malloc, free
 13. 0x0C. C - More malloc, free
+14. 0x0D-preprocessor
+15. 0x0E-structures_typedef
+16.  0x0F-function_pointers

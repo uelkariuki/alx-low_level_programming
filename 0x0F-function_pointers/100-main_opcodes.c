@@ -28,12 +28,15 @@ int main(int argc, char *argv[])
 
 	ptr = (char *)&main;
 
-	for (i = 0; i < number_of_bytes; i++)
+	if (ptr != NULL)
 	{
-		printf("%02hhx ", ptr[i]);
+		for (i = 0; i < number_of_bytes; i++)
+		{
+			printf("%02hhx ", ptr[i]);
+
+		}
 
 	}
-	printf("\n");
 	return (0);
 
 }

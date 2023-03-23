@@ -11,7 +11,8 @@
 int main(int argc, char *argv[])
 {
 	int i, number_of_bytes;
-	char *ptr;
+	int (*address_main)(int, char **) = main;
+	unsigned char current_opcode;
 
 	if (argc != 2)
 	{
@@ -25,17 +26,11 @@ int main(int argc, char *argv[])
 		printf("Error\n");
 		exit(2);
 	}
-
-	ptr = (char *)&main;
-
-	if (ptr != NULL)
+	for (i = 0; i < number_of_bytes; i++)
 	{
-		for (i = 0; i < number_of_bytes; i++)
-		{
-			printf("%02hhx ", ptr[i]);
-
-		}
-
+		current_opcode = *(unsigned char *)address_main;
+		printf("%02hhx ", current_opcode);
+		address_main++;
 	}
 	printf("\n");
 	return (0);

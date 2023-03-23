@@ -29,7 +29,11 @@ int main(int argc, char *argv[])
 	for (i = 0; i < number_of_bytes; i++)
 	{
 		current_opcode = *(unsigned char *)address_main;
-		printf("%02hhx ", current_opcode);
+		printf("%.2x", current_opcode);
+
+		if (i == number_of_bytes - 1)
+			continue;
+		printf(" ");
 		address_main++;
 	}
 	printf("\n");

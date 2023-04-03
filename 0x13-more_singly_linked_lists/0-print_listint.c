@@ -16,7 +16,7 @@ size_t print_listint(const listint_t *h)
 	{
 		if (h->n == 0)
 		{
-			printf("The list is null\n");
+			printf("0\n");
 
 		}
 		else

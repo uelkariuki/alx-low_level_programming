@@ -15,7 +15,7 @@ void free_listint(listint_t *head)
 
 		/*next pointer points to the next node in the list*/
 		next = current_node->next;
-		
+
 		free(current_node);
 		current_node = next;
 	}

@@ -19,13 +19,9 @@ size_t listint_len(const listint_t *h)
 		}
 		else
 		{
-			printf("%", h->n);
-
-
+			h = h->next;
+			counter++;
 		}
-
-		h = h->next;
-		counter++;
 
 
 	}

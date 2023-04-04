@@ -13,6 +13,12 @@ int pop_listint(listint_t **head)
 	int data_deleted_n;
 	listint_t *temp;
 
+	if (*head == NULL)
+	{
+		return (0);
+
+	}
+
 	data_deleted_n = (*head)->n;
 	temp = *head;
 	*head = (*head)->next;

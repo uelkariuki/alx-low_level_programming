@@ -13,6 +13,7 @@ void free_listint2(listint_t **head)
 
 	if (*head == NULL)/* here it checks if head pointer is null*/
 	{
+		free(head);
 		return;
 	}
 

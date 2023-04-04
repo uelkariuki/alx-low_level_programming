@@ -8,14 +8,15 @@
 
 void free_listint2(listint_t **head)
 {
-	listint_t *current_node = *head;
+	listint_t *current_node;
 	listint_t *temp;
 
 	if (*head == NULL)/* here it checks if head pointer is null*/
 	{
-		free(head);
 		return;
 	}
+
+	current_node = *head;
 
 	while (current_node != NULL)
 	{

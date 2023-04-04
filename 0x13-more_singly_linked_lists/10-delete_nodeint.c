@@ -16,7 +16,7 @@ int delete_nodeint_at_index(listint_t **head, unsigned int index)
 
 	if (*head == NULL)
 	{
-		return (1);
+		return (-1);
 
 	}
 	if (index == 0) /* head is the one to be deleted*/
@@ -48,7 +48,7 @@ int delete_nodeint_at_index(listint_t **head, unsigned int index)
 	/* delete the node that is to be deleted*/
 	free(current_node);
 
-	return (0);
+	return (1);
 
 
 }

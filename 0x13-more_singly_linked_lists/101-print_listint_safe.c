@@ -8,41 +8,38 @@
 
 size_t print_listint_safe(const listint_t *head)
 {
-	const listint_t *slow_node, *fast_node;
+	const listint_t *current_node = NULL, *another_node = NULL;
 	size_t counter = 0;
+	size_t a_new_node = 0;
 
 	if (head == NULL)
 	{
 		exit(98);
 
 	}
-	slow_node = fast_node = head;
+	current_node  = head;
 
-	while (slow_node && fast_node && fast_node->next)
+	while (current_node)
 	{
-		printf("[%p] %d\n", (void *)slow_node, slow_node->n);
-		slow_node = slow_node->next;
-		fast_node = fast_node->next;
+		printf("[%p] %d\n", (void *)current_node, current_node->n);
+		counter++;
 
-		if (slow_node == fast_node)
+
+		if (current_node->next >= current_node)
 		{
-			printf("[%p] %d\n", (void *)slow_node, slow_node->n);
-			printf("-> [%p] %d\n", (void *)fast_node, fast_node->n);
-			return (counter + 1);
+			another_node = current_node->next;
 
+			while (current_node != another_node && a_new_node < counter)
+			{
+				printf("[%p] %d\n", (void *)another_node, another_node->n);
+				a_new_node++;
+				another_node = another_node->next;
+			}
+			break;
 		}
-		counter++;
-
+		current_node = current_node->next;
 	}
-
-	/* printing of the last node*/
-	if (slow_node)
-	{
-		printf("[%p] %d\n", (void *)slow_node, slow_node->n);
-		counter++;
-
-	}
-
+	
 	return (counter);
 
 }

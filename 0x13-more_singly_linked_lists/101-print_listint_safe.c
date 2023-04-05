@@ -5,9 +5,10 @@
  * @head: pointer to the head of the linked list
  * Return: the number of nodes in the list
  */
+
 size_t print_listint_safe(const listint_t *head)
 {
-	const listint_t *current_node = head;
+	const listint_t *slow_node, *fast_node;
 	size_t counter = 0;
 
 	if (head == NULL)
@@ -15,18 +16,33 @@ size_t print_listint_safe(const listint_t *head)
 		exit(98);
 
 	}
+	slow_node = fast_node = head;
 
-	while (current_node != NULL)
+	while (slow_node && fast_node && fast_node->next)
 	{
-		printf("[%p] %d\n", (void *)current_node, current_node->n);
-		counter++;
-		if (current_node <= current_node->next)
+		printf("[%p] %d\n", (void *)slow_node, slow_node->n);
+		slow_node = slow_node->next;
+		fast_node = fast_node->next;
+
+		if (slow_node == fast_node)
 		{
-			printf("-> [%p] %d\n", (void *)current_node->next, current_node->next->n);
-			exit(98);
+			printf("[%p] %d\n", (void *)slow_node, slow_node->n);
+			printf("-> [%p] %d\n", (void *)fast_node, fast_node->n);
+			return (counter + 1);
+
 		}
-		current_node = current_node->next;
+		counter++;
+
+	}
+
+	/* printing of the last node*/
+	if (slow_node)
+	{
+		printf("[%p] %d\n", (void *)slow_node, slow_node->n);
+		counter++;
+
 	}
 
 	return (counter);
+
 }

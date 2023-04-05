@@ -39,7 +39,7 @@ size_t print_listint_safe(const listint_t *head)
 		}
 		current_node = current_node->next;
 	}
-	
+
 	return (counter);
 
 }

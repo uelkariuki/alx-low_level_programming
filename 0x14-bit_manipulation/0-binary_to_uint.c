@@ -20,29 +20,22 @@ unsigned int binary_to_uint(const char *b)
 
 	}
 
-
-
 	for (index = q - 1; index >= 0; index--)
 	{
 		if (b[index] == '1')
 		{
 			u_int_value = u_int_value + (1 << power);
 
-
 		}
-		power++;
 
-		if (b[index] != '1' && b[index] != '0')
+		else if  (b[index] != '0')
 		{
 			return (0);
 		}
+		power++;
 
 	}
 	return (u_int_value);
-
-
-
-
 
 
 }

@@ -8,14 +8,22 @@
 
 void print_binary(unsigned long int n)
 {
-	long int index_binary;
+	unsigned long int index_binary;
 
-	/* binary (32) but here is zero indexed 0 - 31*/
-	for (index_binary = 32; index_binary >= 0; index_binary--)
+	/* find leftmost bit by shifting i to the left til half of nreached*/
+	while (index_binary <= n >> 1)
 	{
-		if ((n >> index_binary) & 1)
+		index_binary <<= 1;
+
+
+	}
+
+	while (index_binary > 0)
+	{
+		if (n & index_binary)
 		{
 			_putchar('1');
+
 
 		}
 		else
@@ -25,13 +33,11 @@ void print_binary(unsigned long int n)
 
 		}
 
+		index_binary >>= 1;
+
 
 
 	}
-
-
-
-
 
 
 }

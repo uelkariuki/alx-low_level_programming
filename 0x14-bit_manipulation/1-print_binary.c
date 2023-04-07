@@ -21,7 +21,7 @@ void print_binary(unsigned long int n)
 	}
 	/* using the most significant bit and loop down to find the binary*/
 
-	if (m ==  -1) /* handle the special case of n being 0 */
+	if (m <= -1) /* handle the special case of n being 0 */
 	{
 		_putchar('0');
 

@@ -19,6 +19,8 @@ int set_bit(unsigned long int *n, unsigned int index)
 	}
 
 	holder = 1 << index;
+	/*if i have 10 and want to set bit at index 2 to 1 with this i*/
+	  /*will go from 1010(old) to 1110(new)*/
 	*n = (*n | holder);
 
 	return (1);

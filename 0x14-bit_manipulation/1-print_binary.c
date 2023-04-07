@@ -8,19 +8,27 @@
 
 void print_binary(unsigned long int n)
 {
-	unsigned long int index_binary;
+	int m, q;
 
-	/* find leftmost bit by shifting i to the left til half of nreached*/
-	while (index_binary <= n >> 1)
+	/* finding the most significant bit present at left most */
+	for (m = 31; m >= 0; m--)
 	{
-		index_binary <<= 1;
-
+		if ((n >> m) & 1)
+		{
+			break;
+		}
 
 	}
+	/* using the most significant bit and loop down to find the binary*/
 
-	while (index_binary > 0)
+	if (m ==  -1) /* handle the special case of n being 0 */
 	{
-		if (n & index_binary)
+		_putchar('0');
+
+	}
+	for (q = m; q >= 0; q--)
+	{
+		if ((n >> q) & 1)
 		{
 			_putchar('1');
 
@@ -30,14 +38,8 @@ void print_binary(unsigned long int n)
 		{
 			_putchar('0');
 
-
 		}
 
-		index_binary >>= 1;
-
-
-
 	}
-
 
 }

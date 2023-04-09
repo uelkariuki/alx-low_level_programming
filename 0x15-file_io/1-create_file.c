@@ -39,7 +39,7 @@ int create_file(const char *filename, char *text_content)
 	}
 	/* dealing with file permissions R_OK(read okay / access/permissio)n*/
 	/* 0 means success in this context*/
-	if (access(filename, R_OK | W_OK) != 0)
+	if (access(filename, R_OK | W_OK) != 1)
 	{
 		if (chmod(filename, S_IRUSR | S_IWUSR) == -1)
 		{

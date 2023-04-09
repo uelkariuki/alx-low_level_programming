@@ -24,10 +24,6 @@ int create_file(const char *filename, char *text_content)
 	{
 		return (-1);
 	}
-	else
-	{
-		return (1);
-	}
 	/* dealing with text_content being NULL*/
 	if (text_content != NULL)
 	{
@@ -38,17 +34,7 @@ int create_file(const char *filename, char *text_content)
 			return (-1);
 		}
 	}
-	/* dealing with file permissions R_OK(read okay / access/permissio)n*/
-	/* 0 means success in this context*/
-	/*if (access(filename, R_OK | W_OK) != 1)
-	{
-		if (chmod(filename, S_IRUSR | S_IWUSR) == -1)
-		{
-			return (-1);
 
-		}
-
-	}*/
 	close(file_creat);
 	return (1);
 }

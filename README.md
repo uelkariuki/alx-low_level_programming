@@ -22,3 +22,5 @@
 18. 0x11. C - printf
 19. 0x12. C - Singly linked lists
 20. 0x13. C - More singly linked lists
+21. 0x14. C - Bit manipulation
+22. 0x15. C - File I/O

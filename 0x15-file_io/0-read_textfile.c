@@ -10,43 +10,42 @@
 
 ssize_t read_textfile(const char *filename, size_t letters)
 {
-	FILE *file_pointer = NULL;
+	int file_pointer;
 	char *buffer_letters;
-	size_t the_bytes_read;
+	ssize_t the_bytes_read, the_bytes_written;
 
 	if (filename == NULL)
 	{
 		return (0);
 	}
-	file_pointer = fopen(filename, "r");
-	if (file_pointer == NULL)
+	file_pointer = open(filename, O_RDONLY);
+	if (file_pointer == -1)
 	{
 		return (0);
 	}
-	buffer_letters = malloc(letters);
+	buffer_letters =  (char *) malloc(letters);
 	{
 		if (buffer_letters == NULL)
 		{
-			fclose(file_pointer);
+			close(file_pointer);
 			return (0);
 
 		}
 	}
-	the_bytes_read = fread(buffer_letters, 1, letters, file_pointer);
-	if (the_bytes_read == 0 || ferror(file_pointer))
+	the_bytes_read = read(file_pointer, buffer_letters, letters);
+	if (the_bytes_read == -1)
 	{
 		free(buffer_letters);
-		fclose(file_pointer);
+		close(file_pointer);
 		return (0);
 	}
-	write(STDOUT_FILENO, buffer_letters, the_bytes_read);
-	if (write(STDOUT_FILENO, buffer_letters,
-				the_bytes_read) != (ssize_t)the_bytes_read)
+	the_bytes_written = write(STDOUT_FILENO, buffer_letters, the_bytes_read);
+	if (the_bytes_written == -1 ||  the_bytes_written != the_bytes_read)
 	{
 		free(buffer_letters);
-		fclose(file_pointer);
+		close(file_pointer);
 		return (0);
 	}
-	fclose(file_pointer);
+	close(file_pointer);
 	return (the_bytes_read);
 }

@@ -34,12 +34,13 @@ int create_file(const char *filename, char *text_content)
 		total_bytes_written = write(file_creat, text_content, strlen(text_content));
 		if (total_bytes_written == -1)
 		{
+			close(file_creat);
 			return (-1);
 		}
 	}
 	/* dealing with file permissions R_OK(read okay / access/permissio)n*/
 	/* 0 means success in this context*/
-	if (access(filename, R_OK | W_OK) != 1)
+	/*if (access(filename, R_OK | W_OK) != 1)
 	{
 		if (chmod(filename, S_IRUSR | S_IWUSR) == -1)
 		{
@@ -47,7 +48,7 @@ int create_file(const char *filename, char *text_content)
 
 		}
 
-	}
+	}*/
 	close(file_creat);
 	return (1);
 }

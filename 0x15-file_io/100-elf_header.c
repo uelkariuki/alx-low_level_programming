@@ -68,7 +68,8 @@ int main(int argc, char *argv[])
 	}
 	/* just reading/displaying  the ELF file nothing else*/
 	file_descript = open(file_name, O_RDONLY);
-	if (file_descript < 0)/* -1 for error opening*/
+
+	if (file_descript == -1)/* -1 for error opening*/
 	{
 		error_handling("Opening of file failed");
 

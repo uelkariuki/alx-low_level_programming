@@ -1,5 +1,7 @@
 #include "main.h"
 
+#define BUFFER SIZE 1024
+
 
 /**
   *copy_file- function that copies the content of a file to another file.
@@ -9,7 +11,7 @@
   * 1024 bytes at a time to make less system calls
   */
 
-void copy_file(const char *filename_from, const char *filename_to)
+int copy_file(const char *filename_from, const char *filename_to)
 {
 	FILE *file_from, *file_to;
 	char text_content_buffer[1024];
@@ -24,6 +26,7 @@ void copy_file(const char *filename_from, const char *filename_to)
 	file_to = fopen(filename_to, "r");
 	if (file_to != NULL) /* file already existing*/
 	{
+		fclose(file_to);
 		/*truncate already existing file(overwrite& content destroyed*/
 		file_to = fopen(filename_to, "w+");
 	}
@@ -51,6 +54,7 @@ void copy_file(const char *filename_from, const char *filename_to)
 		/*FD_VALUE is the value of the file descriptor*/
 		exit(100);
 	}
+	return (0);
 }
 
 /**
@@ -62,9 +66,11 @@ void copy_file(const char *filename_from, const char *filename_to)
 
 int main(int ac, char **av)
 {
+
+
 	if (ac != 3)
 	{
-		dprintf(STDERR_FILENO, "Usage: cp file_from file_to\n");
+		dprintf(STDERR_FILENO, "Usage: %s file_from file_to\n", av[0]);
 		exit(97);
 	}
 

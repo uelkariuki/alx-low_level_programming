@@ -1,6 +1,6 @@
 #include "main.h"
 
-#define BUFFER SIZE 1024
+#define BUFFER_SIZE 1024
 
 
 /**
@@ -9,6 +9,7 @@
   *@filename_to: is the name of the file to copy to
   *text_content_buffer: buffer for the characters to be read from file_from
   * 1024 bytes at a time to make less system calls
+  *Return: (0);
   */
 
 int copy_file(const char *filename_from, const char *filename_to)
@@ -40,13 +41,11 @@ int copy_file(const char *filename_from, const char *filename_to)
 		fclose(file_from);
 		exit(99);
 	}
-
 	q = (fread(text_content_buffer, 1, 1024, file_from));
 	while (q > 0) /* some bytes were read and written*/
 	{
 		fwrite(text_content_buffer, 1, q, file_to);
 		q = (fread(text_content_buffer, 1, 1024, file_from));
-
 	}
 	if (fclose(file_from) == -1 || fclose(file_to) == -1)
 	{

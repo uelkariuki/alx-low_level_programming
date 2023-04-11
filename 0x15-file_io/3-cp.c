@@ -12,6 +12,9 @@
 void error_handling(int exit_code, const char *error_message)
 {
 	dprintf(STDERR_FILENO, "%s", error_message);
+	close(STDIN_FILENO);
+	close(STDOUT_FILENO);
+	close(STDERR_FILENO);
 	exit(exit_code);
 }
 /**
@@ -36,25 +39,28 @@ void copy_file_content(const char *filename_from, const char *filename_to)
 			| S_IWUSR | S_IRGRP | S_IWGRP | S_IROTH);
 	if (file_to == -1)
 	{
-		error_handling(99, "Error: Can't write to file_to\n");
 		close(file_from);
+		error_handling(99, "Error: Can't write to file_to\n");
 	}
-	do {
-		t_bytes_read = read(file_from, text_content_buffer, BUFFER_SIZE);
-		if (t_bytes_read == -1)
-		{
-			error_handling(98, "Error: Can't read from file_from\n");
-			close(file_from);
-			close(file_to);
-		}
+
+	while ((t_bytes_read = read(file_from, text_content_buffer,
+					BUFFER_SIZE)) > 0)
+	{
 		t_bytes_written = write(file_to, text_content_buffer, t_bytes_read);
 		if (t_bytes_written == -1)
 		{
-			error_handling(99, "Error: Can't write to file_to\n");
 			close(file_from);
 			close(file_to);
+			error_handling(99, "Error: Can't write     to file_to\n");
 		}
-	} while (t_bytes_read > 0);
+	}
+	if (t_bytes_read == -1)
+	{
+		close(file_from);
+		close(file_to);
+		error_handling(98, "Error: Can't read from file_from\n");
+	}
+
 	if (close(file_from) == -1 || close(file_to) == -1)
 	{
 		error_handling(100, "Error: Can't close fd\n");

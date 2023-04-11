@@ -89,7 +89,10 @@ int main(int argc, char *argv[])
 		error_handling("This file is not an ELF file");
 	}
 	elf_header_print_handling(&elf_header);
-	close(file_descript);
+	if (close(file_descript) == -1)
+	{
+		error_handling("Closing of file failed");
+	}
 
 	return (0);
 

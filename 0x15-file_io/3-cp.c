@@ -30,27 +30,27 @@ void copy_file_content(const char *filename_from, const char *filename_to)
 	file_from = open(filename_from, O_RDONLY);
 	if (file_from == -1)/* not exist and cant be opened*/
 	{
-		error_handling(98, "Error: Can't read from file\n");
+		error_handling(98, "Error: Can't read from file_from\n");
 	}
 	file_to = open(filename_to, O_WRONLY | O_CREAT | O_TRUNC, S_IRUSR
 			| S_IWUSR | S_IRGRP | S_IWGRP | S_IROTH);
 	if (file_to == -1)
 	{
-		error_handling(99, "Error: Can't write to file\n");
+		error_handling(99, "Error: Can't write to file_to\n");
 		close(file_from);
 	}
 	do {
 		t_bytes_read = read(file_from, text_content_buffer, BUFFER_SIZE);
 		if (t_bytes_read == -1)
 		{
-			error_handling(98, "Error: Can't read from file \n");
+			error_handling(98, "Error: Can't read from file_from\n");
 			close(file_from);
 			close(file_to);
 		}
 		t_bytes_written = write(file_to, text_content_buffer, t_bytes_read);
 		if (t_bytes_written == -1)
 		{
-			error_handling(99, "Error: Can't write to file\n");
+			error_handling(99, "Error: Can't write to file_to\n");
 			close(file_from);
 			close(file_to);
 		}

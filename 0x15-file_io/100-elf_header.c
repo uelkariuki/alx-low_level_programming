@@ -30,7 +30,12 @@ void elf_header_print_handling(const Elf64_Ehdr *elf_header)
 	/* EI_indent: constant that specifies size of ELF ID field*/
 	for (a = 0; a < EI_NIDENT; a++)
 	{
-		printf("%02x ", elf_header->e_indent[a]);
+		printf("%02x", elf_header->e_indent[a]);
+		if (a < EI_NIDENT - 1)
+		{
+			printf(" ");
+
+		}
 	}
 	printf("\n  Class:                             %s\n",
 			elf_header->e_indent[4] == 1 ? "ELF32" :

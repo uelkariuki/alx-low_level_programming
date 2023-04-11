@@ -12,43 +12,54 @@
 
 int main(int argc, char *argv[])
 {
-	FILE *file_from, *file_to;
-	char text_content_buffer[1024];
-	const char *filename_from = argv[1], *filename_to = argv[2];
-	size_t q;
+	int file_from, file_to;
+	char text_content_buffer[BUFFER_SIZE];
+	ssize_t t_bytes_read, t_bytes_written;
 
 	if (argc != 3)
 	{
 		dprintf(STDERR_FILENO, "Usage: %s file_from file_to\n", argv[0]);
 		exit(97);
 	}
-	file_from = fopen(filename_from, "r");
-	if (file_from == NULL)/* not exist and cant be opened*/
+	file_from = open(argv[1], O_RDONLY);
+	if (file_from == -1)/* not exist and cant be opened*/
 	{
-		printf("Error: Can't read from file %s\n", filename_from);
+		dprintf(STDERR_FILENO, "Error: Can't read from file %s\n",
+				argv[1]);
 		exit(98);
 	}
-	file_to = fopen(filename_to, "r");
-	if (file_to != NULL) /* file already existing*/
+	file_to = open(argv[2], O_WRONLY | O_CREAT | O_TRUNC, S_IRUSR
+			| S_IWUSR | S_IRGRP | S_IWGRP | S_IROTH);
+	if (file_to == -1)
 	{
-		file_to = fopen(filename_to, "w+");  /*truncate*/
-	}
-	else /* here file doesnt exist yet*/
-		file_to = fopen(filename_to, "w+");/* new one created*/
-	if (file_to == NULL)
-	{
-		printf("Error: Can't write to %s\n", filename_to);
+		dprintf(STDERR_FILENO, "Error: Can't write to %s\n", argv[2]);
+		close(file_from);
 		exit(99);
 	}
-	q = (fread(text_content_buffer, 1, 1024, file_from));
-	while (q > 0) /* some bytes were read and written*/
+	do {
+		t_bytes_read = read(file_from, text_content_buffer,BUFFER_SIZE);
+		if (t_bytes_read == -1)
+		{
+			dprintf(STDERR_FILENO,
+					"Error: Can't read from file %s\n", argv[1]);
+			close(file_from);
+			close(file_to);
+			exit(98);
+		}
+		t_bytes_written = write(file_to, text_content_buffer, t_bytes_read);
+		if (t_bytes_written == -1)
+		{
+			dprintf(STDERR_FILENO, "Error: Can't write to %s\n",
+					argv[2]);
+			close(file_from);
+			close(file_to);
+			exit(99);
+		}
+	}while (t_bytes_read > 0);
+
+	if (close(file_from) == -1 || close(file_to) == -1) 
 	{
-		fwrite(text_content_buffer, 1, q, file_to);
-		q = (fread(text_content_buffer, 1, 1024, file_from));
-	}
-	if (fclose(file_from) == -1 || fclose(file_to) == -1)
-	{
-		printf("Error: Can't close fd FD_VALUE");
+		dprintf(STDERR_FILENO, "Error: Can't close fd\n");
 		exit(100);
 	}
 	return (0);

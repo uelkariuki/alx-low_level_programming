@@ -1,12 +1,5 @@
 #include "main.h"
 
-#if __LP64__
-typedef Elf64_Ehdr Elf_Ehdr;
-#else
-typedef Elf32_Ehdr Elf_Ehdr;
-#endif
-
-
 /**
   *error_handling- function to handle if a file isnt an ELF file and thus
   *        display a comprehensive error message to stderr
@@ -28,7 +21,7 @@ void error_handling(const char *error_message)
   */
 
 
-void elf_header_print_handling(const Elf_Ehdr *elf_header)
+void elf_header_print_handling(const Elf64_Ehdr *elf_header)
 {
 	int a;
 	/* magic: used by file command to determine type of file based */
@@ -37,7 +30,7 @@ void elf_header_print_handling(const Elf_Ehdr *elf_header)
 	/* EI_indent: constant that specifies size of ELF ID field*/
 	for (a = 0; a < EI_NIDENT; a++)
 	{
-		printf("%02x", elf_header->e_ident[a]);
+		printf("%02x", elf_header->e_indent[a]);
 		if (a < EI_NIDENT - 1)
 		{
 			printf(" ");
@@ -45,55 +38,18 @@ void elf_header_print_handling(const Elf_Ehdr *elf_header)
 		}
 	}
 	printf("\n  Class:                             %s\n",
-			elf_header->e_ident[4] == 1 ? "ELF32" :
-			elf_header->e_ident[4] == 2 ? "ELF64" :
+			elf_header->e_indent[4] == 1 ? "ELF32" :
+			elf_header->e_indent[4] == 2 ? "ELF64" :
 			"This is an Invalid ELF class");
-	printf("  Data:                              %s\n",
-			elf_header->e_ident[5] == 1 ? "2's complement, little endian" :
-			elf_header->e_ident[5] == 2 ? "2's complement, big eEndian" :
+	printf("  Data:                             %s\n",
+			elf_header->e_indent[5] == 1 ? "2's complement, little endian" :
+			elf_header->e_indent[5] == 2 ? "2's complement, big eEndian" :
 			"Invalid data encoding present");
-	printf("  Version:                           %d\n", elf_header->e_ident[6]);
-	printf("  OS/ABI:                            ");
-	switch (elf_header->e_ident[EI_OSABI])
-	{
-		case ELFOSABI_HPUX:
-			printf("HP-UX\n");
-			break;
-		case ELFOSABI_NETBSD:
-			printf("UNIX - NetBSD\n");
-			break;
-		case ELFOSABI_SYSV:
-			printf("UNIX - System V\n");
-			break;
-		default:
-			printf("Unknown\n");
-			break;
-	}
-
-	printf("  ABI Version:                       %d\n", elf_header->e_ident[EI_ABIVERSION]);
-	printf("  Type:                              ");
-	switch (elf_header->e_type)
-	{
-		case ET_NONE:
-			printf("NONE (Unknown Type)\n");
-			break;
-		case ET_REL:
-			 printf("REL (Relocatable file)\n");
-			 break;
-		case ET_EXEC:
-			 printf("EXEC (Executable file)\n");
-			 break;
-		case ET_DYN:
-			 printf("DYN (Shared Object file)\n");
-			 break;
-		case ET_CORE:
-			 printf("CORE (Core file)\n");
-			 break;
-		default:
-			 printf("Invalid\n");
-			 break;
-	}
-	printf("  Entry point address:               0x%lx\n", elf_header->e_entry);
+	printf("  Version:                            %d\n", elf_header->e_indent[6]);
+	printf("  OS/ABI:                            %d\n", elf_header->e_indent[7]);
+	printf("  ABI Version:                       %d\n", elf_header->e_indent[8]);
+	printf("  Type:                              %d\n", elf_header->e_type);
+	printf("  Entry point address:               %lx\n", elf_header->e_entry);
 }
 
 /**
@@ -108,7 +64,7 @@ int main(int argc, char *argv[])
 {
 	const char *file_name = argv[1];
 	int file_descript;
-	Elf_Ehdr elf_header;
+	Elf64_Ehdr elf_header;
 
 	if (argc != 2)
 	{
@@ -131,9 +87,9 @@ int main(int argc, char *argv[])
 		error_handling("Failure to read ELF header");
 
 	}
-	if (elf_header.e_ident[0] != 0x7f || elf_header.e_ident[1] != 'E'
-			|| elf_header.e_ident[2] != 'L'
-			|| elf_header.e_ident[3] != 'F')
+	if (elf_header.e_indent[0] != 0x7f || elf_header.e_indent[1] != 'E'
+			|| elf_header.e_indent[2] != 'L'
+			|| elf_header.e_indent[3] != 'F')
 	{
 		error_handling("This file is not an ELF file");
 	}

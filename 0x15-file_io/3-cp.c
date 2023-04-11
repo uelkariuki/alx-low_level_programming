@@ -63,7 +63,7 @@ int copy_file_content(const char *filename_from, const char *filename_to)
 				filename_from);
 	}
 	if (close(file_from) == -1 || close(file_to) == -1)
-		error_handling(100, "Error: Can't close fd\n", NULL);
+		dprintf(100, "Error: Can't close fd %d\n", -1);
 	return (0);
 }
 

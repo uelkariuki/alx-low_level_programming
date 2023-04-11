@@ -26,25 +26,25 @@ void elf_header_print_handling(const Elf64_Ehdr *elf_header)
 	int a;
 	/* magic: used by file command to determine type of file based */
 	/* on its contents*/
-	printf("Magic:");
+	printf("  Magic:   ");
 	/* EI_indent: constant that specifies size of ELF ID field*/
 	for (a = 0; a < EI_NIDENT; a++)
 	{
-		printf("%02x", elf_header->e_indent[a]);
+		printf("%02x ", elf_header->e_indent[a]);
 	}
-	printf("\nClass: %s\n", elf_header->e_indent[4] == 1 ? "ELF32" :
+	printf("\n  Class:                             %s\n",
+			elf_header->e_indent[4] == 1 ? "ELF32" :
 			elf_header->e_indent[4] == 2 ? "ELF64" :
 			"This is an Invalid ELF class");
-	printf("Data: %s\n",
-			elf_header->e_indent[5] == 1 ? "2's complement, little Endian" :
-			elf_header->e_indent[5] == 2 ? "2's comple    ment, big Endian" :
+	printf("  Data:                             %s\n",
+			elf_header->e_indent[5] == 1 ? "2's complement, little endian" :
+			elf_header->e_indent[5] == 2 ? "2's complement, big eEndian" :
 			"Invalid data encoding present");
-	printf("Version: %d\n", elf_header->e_indent[6]);
-	printf("OS/ABI: %d\n", elf_header->e_indent[7]);
-	printf("ABI Version: %d\n", elf_header->e_indent[8]);
-	printf("Type: %d\n", elf_header->e_type);
-	printf("Entry point address: %lx\n", elf_header->e_entry);
-	printf("Format: ELF64\n");
+	printf("  Version:                            %d\n", elf_header->e_indent[6]);
+	printf("  OS/ABI:                            %d\n", elf_header->e_indent[7]);
+	printf("  ABI Version:                       %d\n", elf_header->e_indent[8]);
+	printf("  Type:                              %d\n", elf_header->e_type);
+	printf("  Entry point address:               %lx\n", elf_header->e_entry);
 }
 
 /**

@@ -1,12 +1,5 @@
 #include "main.h"
 
-#if __LP64__
-typedef Elf64_Ehdr Elf_Ehdr;
-#else
-typedef Elf32_Ehdr Elf_Ehdr;
-#endif
-
-
 /**
   *error_handling- function to handle if a file isnt an ELF file and thus
   *        display a comprehensive error message to stderr

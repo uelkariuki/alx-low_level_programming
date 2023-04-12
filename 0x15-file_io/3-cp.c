@@ -43,13 +43,6 @@ int copy_file_content(const char *filename_from, const char *filename_to)
 		error_handling(99, "Error: Can't write to file %s\n",
 				filename_to);
 	}
-	if (access(filename_to, W_OK) != 0)
-	{
-		close(file_from);
-		close(file_to);
-		error_handling(99, "Error: Can't write to file %s\n",
-				filename_to);
-	}
 	while ((t_bytes_read = read(file_from, text_content_buffer,
 					BUFFER_SIZE)) > 0)
 	{

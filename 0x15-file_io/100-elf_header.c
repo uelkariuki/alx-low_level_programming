@@ -53,49 +53,20 @@ void elf_header_print_handling(const Elf_Ehdr *elf_header)
 			printf("HP-UX\n");
 			break;
 		case ELFOSABI_NETBSD:
-			printf("UNIX - NetBSD\n");
-			break;
+			printf("UNIX - NetBSD\n")
 		case ELFOSABI_SYSV:
-			printf("UNIX - System V\n");
-			break;
-		default:
-			printf("Unknown\n");
-			break;
-	}
-
-	printf("  ABI Version:                       %d\n", elf_header->e_ident[EI_ABIVERSION]);
-	printf("  Type:                              ");
-	switch (elf_header->e_type)
-	{
-		case ET_NONE:
-			printf("NONE (Unknown Type)\n");
-			break;
-		case ET_REL:
-			 printf("REL (Relocatable file)\n");
-			 break;
-		case ET_EXEC:
-			 printf("EXEC (Executable file)\n");
-			 break;
-		case ET_DYN:
-			 printf("DYN (Shared Object file)\n");
-			 break;
-		case ET_CORE:
-			 printf("CORE (Core file)\n");
-			 break;
-		default:
-			 printf("Invalid\n");
-			 break;
-	}
-	printf("  Entry point address:               0x%lx\n", elf_header->e_entry);
+			printf("UNIX	default:
+			printf("Unknown
+			}			break;
 }
 
 /**
-  *main- function that displays the information contained in the ELF header
-  *          at the start of an ELF file.
-  *@argc: the number of command line arguments
-  *@argv: the array containing the program command line arguments
-  *Return: 0
-  */
+ *main- function that displays the information contained in the ELF header
+ * at the start of an ELF file.
+ * @argc: the number of command line arguments
+ * @argv: the array containing the program command line arguments
+ * Return: 0
+ */
 
 int main(int argc, char *argv[])
 {

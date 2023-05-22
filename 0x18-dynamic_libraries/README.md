@@ -18,3 +18,4 @@ Create a dynamic library that contains C functions that can be called from Pytho
 * MSS will use the same terminal and session than our mole
 * Before running the `gm` program, MSS always check the content of the directory
 * MSS always exit after running the program `gm`
+* Tip: `LD_PRELOAD`

@@ -1,11 +1,8 @@
-#include "lists.h"
+#include <stdio.h>
 
-/**
- * main- main function
- * Return: 0
- */
 int main(void)
 {
-	printf("keygen not yet found");
+	printf("Too tough, to be continued");
 	return (0);
+
 }

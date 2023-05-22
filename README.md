@@ -25,3 +25,4 @@
 21. 0x14. C - Bit manipulation
 22. 0x15. C - File I/O
 23. 0x17. C - Doubly linked lists
+24. 0x18. C - Dynamic libraries

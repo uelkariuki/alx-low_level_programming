@@ -19,6 +19,11 @@ char *hash_table_get(const hash_table_t *ht, const char *key)
 		return (NULL);
 	}
 	index = key_index((unsigned char *) key, ht->size);
+	if (index >= ht->size)/* the index is not in the hash table*/
+	{
+		return (NULL);
+
+	}
 	item = ht->array[index];
 
 	while (item != NULL)

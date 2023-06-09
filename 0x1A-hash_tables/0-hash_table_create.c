@@ -11,14 +11,18 @@ hash_table_t *hash_table_create(unsigned long int size)
 	hash_table_t *table;
 	unsigned long int q;
 
-	if (size == 0)
-		return (0);
+
 	table = (hash_table_t *)malloc(sizeof(hash_table_t));
 	if (table == NULL)
 	{
 		return (NULL);
 	}
 	table->size = size;
+	if (table->size == 0)
+	{
+		return (NULL);
+
+	}
 
 	table->array = (hash_node_t **)calloc(table->size, sizeof(hash_node_t));
 	if (table->array == NULL)

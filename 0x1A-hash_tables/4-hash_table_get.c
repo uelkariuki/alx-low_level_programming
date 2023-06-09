@@ -20,7 +20,7 @@ char *hash_table_get(const hash_table_t *ht, const char *key)
 	}
 	index = key_index((unsigned char *) key, ht->size);
 	item = ht->array[index];
-	if (index >= ht->size)/* the index is not in the hash table*/
+	if (index > ht->size)/* the index is not in the hash table*/
 	{
 		return (NULL);
 

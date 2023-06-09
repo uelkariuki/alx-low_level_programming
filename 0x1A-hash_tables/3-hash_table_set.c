@@ -28,7 +28,6 @@ int hash_table_set(hash_table_t *ht, const char *key, const char *value)
 	temp = ht->array[index];
 	while (temp != NULL)
 	{
-		/*the key is found*/
 		if (strcmp(temp->key, key) == 0)
 		{
 			free(temp->value);
@@ -37,17 +36,13 @@ int hash_table_set(hash_table_t *ht, const char *key, const char *value)
 		}
 		temp = temp->next;
 	}
-
 	/* Because of collision, add new_node at start of the list*/
 	the_new_node = (hash_node_t *)malloc(sizeof(hash_node_t));
 	if (the_new_node == NULL)
 		return (0);
 	the_new_node->key = strdup(key);
 	if (the_new_node->key == NULL)
-	{
-		free(the_new_node);
 		return (0);
-	}
 	the_new_node->value = strdup(value);
 	if (the_new_node->value == NULL)
 	{

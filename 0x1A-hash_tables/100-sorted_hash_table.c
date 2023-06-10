@@ -147,28 +147,23 @@ char *shash_table_get(const shash_table_t *ht, const char *key)
 
 void shash_table_print(const shash_table_t *ht)
 {
-	shash_node_t *the_node = ht->shead, *temp = NULL;
+	shash_node_t *the_node = ht->shead;
 
 	if (ht == NULL)
 	{
 		return;
 	}
+	printf("{");
 	while (the_node != NULL)
 	{
-		temp = the_node;
-		printf("{");
-		while (temp != NULL)
+		printf("'%s': '%s'", the_node->key, the_node->value);
+		if (the_node->snext != NULL)
 		{
-			printf("'%s': '%s'", the_node->key, the_node->value);
-			if (the_node->snext != NULL)
-			{
-				printf(", ");
-			}
-			temp = temp->snext;
+			printf(", ");
 		}
-		printf("}\n");
-		the_node = the_node->next;
+		the_node = the_node->snext;
 	}
+	printf("}\n");
 }
 
 /**

@@ -51,13 +51,10 @@ shash_table_t *shash_table_create(unsigned long int size)
 
 int shash_table_set(shash_table_t *ht, const char *key, const char *value)
 {
-	unsigned long int index;
 	shash_node_t *curent, *the_new_node, *prev;
-	shash_node_t **slot;
 
 	if (value == NULL || ht == NULL || key == NULL || *key == '\0')
 		return (0);
-	index = key_index((unsigned char *)key, ht->size);
 	the_new_node = malloc(sizeof(shash_node_t));
 	if (the_new_node == NULL)
 		return (0);
@@ -69,14 +66,21 @@ int shash_table_set(shash_table_t *ht, const char *key, const char *value)
 		free(the_new_node->key);
 		free(the_new_node->value);
 		free(the_new_node);
+		return (0);
 	}
-	slot = &(ht->array[index]);
-	curent = *slot;
+	if (ht->shead == NULL)
+	{
+		ht->shead = ht->stail = the_new_node;
+		the_new_node->sprev = the_new_node->snext = NULL;
+		return (1);
+	}
+
+	curent = ht->shead;
 	prev = NULL;
 	while (curent != NULL && strcmp(curent->key, key) < 0)
 	{
 		prev = curent;
-		curent = curent->next;
+		curent = curent->snext;
 	}
 	while (curent != NULL && strcmp(curent->key, key) == 0)
 	{
@@ -92,12 +96,11 @@ int shash_table_set(shash_table_t *ht, const char *key, const char *value)
 	if (prev != NULL)
 		prev->next = the_new_node;
 	else
-		*slot = the_new_node;
+		ht->shead = the_new_node;
 	if (curent != NULL)
 		curent->sprev = the_new_node;
-	if (prev == NULL)
-		ht->shead = the_new_node;
-	ht->stail = the_new_node;
+	else
+		ht->stail = the_new_node;
 	return (1);
 }
 
@@ -176,25 +179,21 @@ void shash_table_print(const shash_table_t *ht)
 
 void shash_table_print_rev(const shash_table_t *ht)
 {
-	shash_node_t *the_node = ht->stail, *temp = NULL;
+	shash_node_t *the_node = ht->stail;
 	if (ht == NULL)
 		return;
+	printf("{");
+
 	while (the_node != NULL)
 	{
-		temp = the_node;
-		printf("{");
-		while (temp != NULL)
+		printf("'%s': '%s'", the_node->key, the_node->value);
+		if (the_node->sprev != NULL)
 		{
-			printf("'%s': '%s'", the_node->key, the_node->value);
-			if (the_node->sprev != NULL)
-			{
-				printf(", ");
-			}
-			temp = temp->sprev;
+			printf(", ");
 		}
-		printf("}\n");
 		the_node = the_node->sprev;
 	}
+	printf("}\n");
 
 }
 

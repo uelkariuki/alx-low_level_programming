@@ -16,10 +16,10 @@ clean:
 	$(RM) *~ $(NAME)
 oclean:
 	$(RM) $(OBJ)
-fclean:
+fclean: clean oclean
 	$(RM) *~ $(NAME)
 	$(RM) $(OBJ)
 	
-re: clean all
+re: oclean $(NAME)
 	
 

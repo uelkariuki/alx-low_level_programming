@@ -27,3 +27,5 @@
 23. 0x17. C - Doubly linked lists
 24. 0x18. C - Dynamic libraries
 25. 0x1A. C - Hash tables
+26. 0x1B. C - Sorting algorithms & Big O 
+27. 0x1C. C - Makefiles

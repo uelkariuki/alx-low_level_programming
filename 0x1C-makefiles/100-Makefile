@@ -9,9 +9,9 @@ RM ?= rm -f
 REMOVE = $(RM)
 HEADER_FILE = m.h
 
-.PHONY: all $(NAME) main.o school.o clean oclean fclean re
+.PHONY: all $(NAME) $(GCC_FLAGS)  main.o school.o clean oclean fclean re
 
-all: $(HEADER_FILE) $(NAME)
+all: $(HEADER_FILE) $(GCC_FLAGS) $(NAME)
 
 
 $(NAME): $(OBJ)
@@ -20,7 +20,7 @@ $(NAME): $(OBJ)
 $(HEADER_FILE):
 	echo "Error no $@"
 	@exit 1
-main.o :main.c
+main.o :main.c 
 	$(GCC_COMPILER) $(GCC_FLAGS) main.c -c -o main.o
 school.o :school.c
 	$(GCC_COMPILER) $(GCC_FLAGS) school.c -c -o school.o
@@ -31,4 +31,4 @@ oclean:
 	$(REMOVE) $(OBJ)
 fclean: clean oclean
 	
-re: oclean $(NAME)
+re: fclean all

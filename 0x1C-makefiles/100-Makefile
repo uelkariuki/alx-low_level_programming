@@ -1,7 +1,5 @@
 CC = gcc
 GCC_COMPILER = $(CC)
-CFLAGS = -Wall -Werror -Wextra -pedantic
-GCC_FLAGS = $(CFLAGS)
 SRC = main.c school.c 
 OBJ = main.o school.o
 NAME = school
@@ -9,21 +7,21 @@ RM ?= rm -f
 REMOVE = $(RM)
 HEADER_FILE = m.h
 
-.PHONY: all $(NAME) $(GCC_FLAGS)  main.o school.o clean oclean fclean re
+.PHONY: all $(NAME) -Wall -Werror -Wextra -pedantic  main.o school.o clean oclean fclean re
 
-all: $(HEADER_FILE) $(GCC_FLAGS) $(NAME)
+all: $(HEADER_FILE) -Wall -Werror -Wextra -pedantic $(NAME)
 
 
 $(NAME): $(OBJ)
-	$(GCC_COMPILER) $(GCC_FLAGS) $(OBJ) -o $(NAME)
+	$(GCC_COMPILER) -Wall -Werror -Wextra -pedantic $(OBJ) -o $(NAME)
 
 $(HEADER_FILE):
 	echo "Error no $@"
 	@exit 1
 main.o :main.c 
-	$(GCC_COMPILER) $(GCC_FLAGS) main.c -c -o main.o
+	$(GCC_COMPILER) -Wall -Werror -Wextra -pedantic main.c -c -o main.o
 school.o :school.c
-	$(GCC_COMPILER) $(GCC_FLAGS) school.c -c -o school.o
+	$(GCC_COMPILER) -Wall -Werror -Wextra -pedantic school.c -c -o school.o
 
 clean:
 	$(REMOVE) *~ $(NAME)

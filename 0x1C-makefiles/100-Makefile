@@ -1,27 +1,18 @@
 CC = gcc
-GCC_COMPILER = $(CC)
 SRC = main.c school.c
 C_FLAGS = -Wall -Werror -Wextra -pedantic
-OBJ = main.o school.o
+OBJ = $(SRC:.c=.o)
 NAME = school
-RM ?= rm -f
-REMOVE = $(RM)
 
 
-.PHONY: all $(NAME) main.o school.o clean oclean fclean re
+.PHONY: all $(NAME) clean oclean fclean re
 
 all: m.h $(OBJ)
 	$(CC) $(OBJ) -o $(NAME)	
-
-main.o :main.c 
-	$(GCC_COMPILER) main.c -c -o main.o
-school.o :school.c
-	$(GCC_COMPILER) school.c -c -o school.o
-
 clean:
-	$(REMOVE) *~ $(NAME)
+	$(RM) *~ $(NAME)
 oclean:
-	$(REMOVE) $(OBJ)
+	$(RM) $(OBJ)
 fclean: clean oclean
-	
+
 re: fclean all

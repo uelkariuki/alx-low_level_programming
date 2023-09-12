@@ -17,7 +17,7 @@
 13. 0x0C. C - More malloc, free
 14. 0x0D-preprocessor
 15. 0x0E-structures_typedef
-16.  0x0F-function_pointers
+16. 0x0F-function_pointers
 17. 0x10. C - Variadic functions
 18. 0x11. C - printf
 19. 0x12. C - Singly linked lists
@@ -29,3 +29,5 @@
 25. 0x1A. C - Hash tables
 26. 0x1B. C - Sorting algorithms & Big O 
 27. 0x1C. C - Makefiles
+28. 0x1D. C - Binary trees
+29. 0x1E. C - Search Algorithms

@@ -12,7 +12,7 @@
 
 int helper_interpolation(int *array, int low, int high, int value)
 {
-	size_t pos;
+	size_t pos = 0;
 
 	if (low <= high && value >= array[low] && value <= array[high])
 	{
@@ -32,7 +32,10 @@ int helper_interpolation(int *array, int low, int high, int value)
 			return (helper_interpolation(array, low, pos - 1, value));
 		}
 	}
-	printf("Value checked array[%ld] is out of range\n", pos);
+	else
+	{
+		printf("Value checked array[%ld] is out of range\n", pos);
+	}
 	return (-1);
 }
 

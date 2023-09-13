@@ -12,7 +12,7 @@
 
 int helper_interpolation(int *array, int low, int high, int value)
 {
-	size_t pos = 0;
+	size_t pos = 2109;
 
 	if (low <= high && value >= array[low] && value <= array[high])
 	{

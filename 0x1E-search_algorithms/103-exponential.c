@@ -61,19 +61,18 @@ int helper_exponenentialSearch(int *array, int start, int end, int value)
 		return (-1);
 	while (i < (end - start))
 	{
-		printf("Value checked array[%d] = [%d]\n", i, array[i]);
 		if (array[i] < value)
 		{
+			printf("Value checked array[%d] = [%d]\n", i, array[i]);
 			i *= 2; /* it will increase as a power of 2*/
 		}
 		else
 		{
+			printf("Value found between indexes [%d] and [%d]\n", i / 2, min(i, end));
 			break; /* when array[i] crosses the value element*/
 		}
 
 	}
-	printf("Value found between indexes [%d] and [%d]\n", i / 2, min(i, end));
-
 	/* search within the sub array*/
 	return (helper_binarySearch(array, i / 2, min(i, end), value));
 }

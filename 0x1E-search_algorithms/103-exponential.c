@@ -13,33 +13,33 @@
 
 int helper_binarySearch(int *array, int start, int end, int value)
 {
-        int mid, i;
+	int mid, i;
 
-        if (start <= end)
-        {
-                printf("Searching in array: ");
+	if (start <= end)
+	{
+		printf("Searching in array: ");
 
-                for (i = start; i <= end; i++)
-                {
-                        printf("%d", array[i]);
-                        if (i < end)
-                        {
-                                printf(", ");
-                        }
-                        else
-                        {
-                                printf("\n");
-                        }
-                }
-                mid = (start + (end - start) / 2);
-                if (array[mid] == value)
-                        return (mid);
-                else if (array[mid] > value)
-                        return (helper_binarySearch(array, start, mid - 1, value));
-                else
-                        return (helper_binarySearch(array, mid + 1, end, value));
-        }
-        return (-1);
+		for (i = start; i <= end; i++)
+		{
+			printf("%d", array[i]);
+			if (i < end)
+			{
+				printf(", ");
+			}
+			else
+			{
+				printf("\n");
+			}
+		}
+		mid = (start + (end - start) / 2);
+		if (array[mid] == value)
+			return (mid);
+		else if (array[mid] > value)
+			return (helper_binarySearch(array, start, mid - 1, value));
+		else
+			return (helper_binarySearch(array, mid + 1, end, value));
+	}
+	return (-1);
 }
 
 /**
@@ -55,27 +55,27 @@ int helper_binarySearch(int *array, int start, int end, int value)
 
 int helper_exponenentialSearch(int *array, int start, int end, int value)
 {
-        int i = 1; /* 2 ^ 0 == 1*/
+	int i = 1; /* 2 ^ 0 == 1*/
 
-        if ((end - start) <= 0)
-                return (-1);
-        while (i < (end - start))
-        {
-                if (array[i] < value)
-                {
+	if ((end - start) <= 0)
+		return (-1);
+	while (i < (end - start))
+	{
+		if (array[i] < value)
+		{
 			printf("Value checked array[%d] = [%d]\n", i, array[i]);
 			i *= 2; /* it will increase as a power of 2*/
-                }
-                else
-                {
-                        break; /* when array[i] crosses the value element*/
-                }
+		}
+		else
+		{
+			break; /* when array[i] crosses the value element*/
+		}
 
-        }
-        printf("Value found between indexes [%d] and [%d]\n", i / 2, min(i, end));
+	}
+	printf("Value found between indexes [%d] and [%d]\n", i / 2, min(i, end));
 
-        /* search within the sub array*/
-        return (helper_binarySearch(array, i / 2, min(i, end), value));
+	/* search within the sub array*/
+	return (helper_binarySearch(array, i / 2, min(i, end), value));
 }
 
 /**
@@ -90,10 +90,10 @@ int helper_exponenentialSearch(int *array, int start, int end, int value)
 
 int exponential_search(int *array, size_t size, int value)
 {
-        if (array == NULL)
-        {
-                return (-1);
+	if (array == NULL)
+	{
+		return (-1);
 
-        }
-        return (helper_exponenentialSearch(array, 0, size - 1, value));
+	}
+	return (helper_exponenentialSearch(array, 0, size - 1, value));
 }

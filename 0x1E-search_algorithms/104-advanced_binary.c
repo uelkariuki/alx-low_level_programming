@@ -32,19 +32,21 @@ int helper_advanced_binary(int *array, int left, int right, int value)
 			}
 		}
 
-		if (array[middle] == value)
+		if (array[middle] == value && (middle == left ||
+					array[middle - 1] != value))
 		{
-			if (middle == 0 || array[middle - 1] < value)
-				return (middle);
-			else
-				return (helper_advanced_binary(array, left, middle, value));
+			return (middle);
 		}
-		else if (array[middle] > value)
-			return (helper_advanced_binary(array, left, middle - 1, value));
+		else if (array[middle] > value || (array[middle] == value &&
+					array[middle - 1] == value))
+			return (helper_advanced_binary(array, left, middle, value));
 		else
 			return (helper_advanced_binary(array, middle + 1, right, value));
 	}
-	return (-1);
+	else
+	{
+		return (-1);
+	}
 
 }
 
@@ -59,7 +61,7 @@ int helper_advanced_binary(int *array, int left, int right, int value)
  */
 int advanced_binary(int *array, size_t size, int value)
 {
-	if (array == NULL || size == 0)
+	if (array == NULL)
 	{
 		return (-1);
 	}

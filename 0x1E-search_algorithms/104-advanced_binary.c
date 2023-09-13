@@ -16,7 +16,7 @@ int helper_advanced_binary(int *array, int left, int right, int value)
 
 	if (right >= left)
 	{
-		middle = left + (right - left) / 2;
+		middle = left + ((right - left)) / 2;
 
 		printf("Searching in array: ");
 		for (i = left; i <= right; i++)
@@ -59,7 +59,7 @@ int helper_advanced_binary(int *array, int left, int right, int value)
  */
 int advanced_binary(int *array, size_t size, int value)
 {
-	if (array == NULL)
+	if (array == NULL || size == 0)
 	{
 		return (-1);
 	}
